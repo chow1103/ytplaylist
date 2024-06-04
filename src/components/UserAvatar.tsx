@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Button,
-  ButtonProps,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Tooltip,
-  styled,
-} from '@mui/material';
+import { Box, Button, ButtonProps, ListItemIcon, Menu, MenuItem, Tooltip, styled } from '@mui/material';
 
 import { AccountCircle, Google, Logout } from '@mui/icons-material';
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -49,13 +40,7 @@ const UserAvatar = () => {
           onClick={handleClick}
         >
           {session && session.user && session.user.image ? (
-            <Image
-              src={session.user.image}
-              width={35}
-              height={35}
-              alt=''
-              style={{ borderRadius: '50%' }}
-            />
+            <Image src={session.user.image} width={35} height={35} alt='' style={{ borderRadius: '50%' }} />
           ) : (
             <AccountCircle fontSize='large' />
           )}
@@ -83,7 +68,7 @@ const UserAvatar = () => {
               display: 'block',
               position: 'absolute',
               top: 0,
-              right: '25%',
+              right: '12%',
               width: 10,
               height: 10,
               bgcolor: 'background.paper',
