@@ -42,13 +42,13 @@ const Home = () => {
       try {
         const session = await getSession();
         if (session && session.accessToken) {
+          setLoggedIn(true);
           const youtube = await YouTubeServices.build(session.accessToken);
           if (youtube.error) {
             signOut();
             return;
           }
           setPlaylists(youtube.getPlaylists);
-          setLoggedIn(true);
         }
       } catch (err) {
         console.log(err);
@@ -98,7 +98,7 @@ const Home = () => {
     <>
       <Header search={search} setSearch={setSearch} disableSearch={loggedIn} />
       <Box component='main' py={2} px={4} width='100%' height='calc(100vh - 70px - 32px)'>
-        {!loggedIn ? (
+        {!loggedIn && !playlists ? (
           <Box display={'flex'} justifyContent={'center'} alignItems={'center'} height='100%'>
             <SignInButton variant='text' onClick={() => signIn('google')}>
               <Image src='icons8_google.svg' height={40} width={40} alt='Google'></Image>
