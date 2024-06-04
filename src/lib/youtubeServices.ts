@@ -52,7 +52,7 @@ interface AsyncClassCons {
 }
 
 export default class YouTubeService {
-  static #BASE_URL: string = '/api/playlist';
+  static #BASE_URL: string = 'http://localhost:3000/api/playlist';
   static #accessToken: string;
   static #playlistId: string;
   static #playlists: PlaylistsProps[];
