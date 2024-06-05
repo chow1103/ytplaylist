@@ -3,7 +3,7 @@
 Youtube only allow user to sort their playlist with few option, this app take use of YouTube Data API v3 to sort and update the playlist.
 (currently only available for internal use and only able to sort by video title, channel name and video publish date(not accurate cuz youtube music always change the video in topic channels))
 
-
+---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
