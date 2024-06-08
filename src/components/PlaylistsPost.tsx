@@ -1,12 +1,12 @@
-import { FC } from 'react';
-import { PlaylistPlay, Queue } from '@mui/icons-material';
-import { Box, BoxProps, Typography, styled } from '@mui/material';
-import Image from 'next/image';
-import type { PlaylistsProps } from '@/lib/youtubeServices';
-import Link from 'next/link';
+import { FC } from 'react'
+import { PlaylistPlay, Queue } from '@mui/icons-material'
+import { Box, BoxProps, Typography, styled } from '@mui/material'
+import Image from 'next/image'
+import type { PlaylistsProps } from '@/lib/youtubeServices'
+import Link from 'next/link'
 
 interface ChildProps {
-  playlist: PlaylistsProps;
+  playlist: PlaylistsProps
 }
 
 const PostShadow = styled(Box)<BoxProps>(() => ({
@@ -15,10 +15,10 @@ const PostShadow = styled(Box)<BoxProps>(() => ({
   borderRadius: '1rem 1rem 0 0',
   marginBottom: '3px',
   transition: '.3s ease',
-}));
+}))
 const MetaData = styled(Box)<BoxProps>(({ theme }) => ({
   color: theme.palette.mode === 'dark' ? '#bdbdbd' : '#424242',
-}));
+}))
 const HoverOverlayContainer = styled(Box)<BoxProps>(() => ({
   position: 'relative',
   '&:hover .middle': {
@@ -27,7 +27,7 @@ const HoverOverlayContainer = styled(Box)<BoxProps>(() => ({
   '&:hover img': {
     opacity: 0.5,
   },
-}));
+}))
 const HoverOverlayMiddle = styled(Box)<BoxProps>(() => ({
   transition: '0.5s ease',
   opacity: 0,
@@ -36,7 +36,7 @@ const HoverOverlayMiddle = styled(Box)<BoxProps>(() => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   textAlign: 'center',
-}));
+}))
 
 const PlaylistsPost: FC<ChildProps> = ({ playlist }) => {
   return (
@@ -81,7 +81,7 @@ const PlaylistsPost: FC<ChildProps> = ({ playlist }) => {
         </Box>
       </HoverOverlayContainer>
     </Box>
-  );
-};
+  )
+}
 
-export default PlaylistsPost;
+export default PlaylistsPost

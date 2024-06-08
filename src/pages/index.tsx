@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import Grid from '@mui/material/Unstable_Grid2';
-import Header from '@/components/Header';
-import PlaylistsPost from '@/components/PlaylistsPost';
+import Grid from '@mui/material/Unstable_Grid2'
+import Header from '@/components/Header'
+import PlaylistsPost from '@/components/PlaylistsPost'
 import {
   Box,
   Button,
@@ -14,13 +14,13 @@ import {
   Skeleton,
   Typography,
   styled,
-} from '@mui/material';
-import Image from 'next/image';
-import { signIn, getSession, signOut } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import YouTubeServices from '@/lib/youtubeServices';
-import type { PlaylistsProps } from '@/lib/youtubeServices';
-import { useWindowDimensions } from '@/lib/customHooks';
+} from '@mui/material'
+import Image from 'next/image'
+import { signIn, getSession, signOut } from 'next-auth/react'
+import { useEffect, useState } from 'react'
+import YouTubeServices from '@/lib/youtubeServices'
+import type { PlaylistsProps } from '@/lib/youtubeServices'
+import { useWindowDimensions } from '@/lib/customHooks'
 
 const SignInButton = styled(Button)<ButtonProps>(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -31,66 +31,66 @@ const SignInButton = styled(Button)<ButtonProps>(({ theme }) => ({
   '&:hover': {
     backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#f5f5f5',
   },
-}));
+}))
 
 const Home = () => {
-  const [playlists, setPlaylists] = useState<PlaylistsProps[]>();
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [playlists, setPlaylists] = useState<PlaylistsProps[]>()
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const session = await getSession();
+        const session = await getSession()
         if (session && session.accessToken) {
-          setLoggedIn(true);
-          const youtube = await YouTubeServices.build(session.accessToken);
+          setLoggedIn(true)
+          const youtube = await YouTubeServices.build(session.accessToken)
           if (youtube.error) {
-            signOut();
-            return;
+            signOut()
+            return
           }
-          setPlaylists(youtube.getPlaylists);
+          setPlaylists(youtube.getPlaylists)
         }
       } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const [sortBy, setSortBy] = useState<string>('a-z');
-  const [search, setSearch] = useState<string>('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setSortBy(event.target.value);
-  };
-
-  const { windowWidth } = useWindowDimensions();
-
-  if (playlists) {
-    if (search) {
-      playlists.filter((obj) => obj.title.toLowerCase().includes(search.toLowerCase()));
-    } else {
-      if (sortBy === 'a-z') {
-        playlists.sort((a: any, b: any) => {
-          return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
-        });
-      } else if (sortBy === 'count') {
-        playlists.sort((a: any, b: any) => {
-          return a.itemCount < b.itemCount ? 1 : -1;
-        });
+        console.log(err)
       }
     }
 
-    let scale: number = windowWidth / playlists[0].thumbnails.width;
-    if (windowWidth > 1535) scale /= 5;
-    else if (windowWidth > 1200) scale /= 4;
-    else if (windowWidth > 900) scale /= 3;
-    else if (windowWidth > 600) scale /= 2;
+    fetchData()
+  }, [])
+
+  const [sortBy, setSortBy] = useState<string>('a-z')
+  const [search, setSearch] = useState<string>('')
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setSortBy(event.target.value)
+  }
+
+  const { windowWidth } = useWindowDimensions()
+
+  if (playlists) {
+    if (search) {
+      playlists.filter((obj) => obj.title.toLowerCase().includes(search.toLowerCase()))
+    } else {
+      if (sortBy === 'a-z') {
+        playlists.sort((a: any, b: any) => {
+          return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+        })
+      } else if (sortBy === 'count') {
+        playlists.sort((a: any, b: any) => {
+          return a.itemCount < b.itemCount ? 1 : -1
+        })
+      }
+    }
+
+    let scale: number = windowWidth / playlists[0].thumbnails.width
+    if (windowWidth > 1535) scale /= 5
+    else if (windowWidth > 1200) scale /= 4
+    else if (windowWidth > 900) scale /= 3
+    else if (windowWidth > 600) scale /= 2
 
     for (const obj of playlists) {
-      obj.thumbnails.width *= scale - 0.25;
-      obj.thumbnails.height *= scale - 0.25;
+      obj.thumbnails.width *= scale - 0.25
+      obj.thumbnails.height *= scale - 0.25
     }
   }
 
@@ -155,7 +155,7 @@ const Home = () => {
         )}
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

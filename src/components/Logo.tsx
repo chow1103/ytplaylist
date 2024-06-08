@@ -1,6 +1,6 @@
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Box, Typography } from '@mui/material'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Logo = () => {
   return (
@@ -12,7 +12,7 @@ const Logo = () => {
         </Typography>
       </Box>
     </Link>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

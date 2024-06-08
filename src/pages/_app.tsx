@@ -1,27 +1,27 @@
-import Head from 'next/head';
-import type { AppProps } from 'next/app';
-import { Roboto, Poppins } from 'next/font/google';
-import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
-import CssBaseline from '@mui/material/CssBaseline';
-import './styles/global.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SessionProvider } from 'next-auth/react';
+import Head from 'next/head'
+import type { AppProps } from 'next/app'
+import { Roboto, Poppins } from 'next/font/google'
+import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter'
+import CssBaseline from '@mui/material/CssBaseline'
+import './styles/global.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import { SessionProvider } from 'next-auth/react'
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
-    logo: React.CSSProperties;
+    logo: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    logo?: React.CSSProperties;
+    logo?: React.CSSProperties
   }
 }
 
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    logo: true;
+    logo: true
   }
 }
 
@@ -29,13 +29,13 @@ const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
-});
+})
 
 const poppins = Poppins({
   weight: '600',
   subsets: ['latin'],
   display: 'swap',
-});
+})
 
 const theme = createTheme({
   typography: {
@@ -73,7 +73,7 @@ const theme = createTheme({
       main: '#44cc00',
     },
   },
-});
+})
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -94,5 +94,5 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
         </ThemeProvider>
       </AppCacheProvider>
     </SessionProvider>
-  );
+  )
 }

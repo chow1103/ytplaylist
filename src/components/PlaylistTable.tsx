@@ -1,12 +1,12 @@
 // Abandoned react-virtuoso doesn't work properly with fixed header
 
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { TableVirtuoso, TableComponents } from 'react-virtuoso';
-import type { PlaylistItemsProps } from '@/lib/youtubeServices';
-import React from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { TableVirtuoso, TableComponents } from 'react-virtuoso'
+import type { PlaylistItemsProps } from '@/lib/youtubeServices'
+import React from 'react'
 
 interface ChildProps {
-  playlistItems: PlaylistItemsProps[];
+  playlistItems: PlaylistItemsProps[]
 }
 
 const VirtuosoTableComponents: TableComponents<PlaylistItemsProps> = {
@@ -15,7 +15,7 @@ const VirtuosoTableComponents: TableComponents<PlaylistItemsProps> = {
   TableHead: React.forwardRef(() => <TableHead />),
   TableRow: ({ item: _item, ...props }) => <TableRow {...props} hover={true} />,
   TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
-};
+}
 
 const PlaylistTable = ({ playlistItems }: ChildProps) => {
   return (
@@ -47,7 +47,7 @@ const PlaylistTable = ({ playlistItems }: ChildProps) => {
         </TableRow>
       )}
     />
-  );
-};
+  )
+}
 
-export default PlaylistTable;
+export default PlaylistTable

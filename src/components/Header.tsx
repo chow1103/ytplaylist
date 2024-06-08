@@ -1,25 +1,19 @@
-import { FC } from 'react';
-import { Box, IconButton, TextField } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import Logo from './Logo';
-import UserAvatar from './UserAvatar';
-import { Clear } from '@mui/icons-material';
+import { FC } from 'react'
+import { Box, IconButton, TextField } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import Logo from './Logo'
+import UserAvatar from './UserAvatar'
+import { Clear } from '@mui/icons-material'
 
 interface ChildProps {
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  disableSearch: boolean;
+  search: string
+  setSearch: React.Dispatch<React.SetStateAction<string>>
+  disableSearch: boolean
 }
 
 const Header: FC<ChildProps> = ({ search, setSearch, disableSearch }) => {
   return (
-    <Box
-      component='header'
-      display='flex'
-      justifyContent='space-between'
-      alignItems='center'
-      height={70}
-    >
+    <Box component='header' display='flex' justifyContent='space-between' alignItems='center' height={70}>
       <Logo />
       {!disableSearch ? (
         <div></div>
@@ -45,7 +39,7 @@ const Header: FC<ChildProps> = ({ search, setSearch, disableSearch }) => {
 
       <UserAvatar />
     </Box>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -1,13 +1,13 @@
-import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material';
-import type { AscDesc, SortByKey } from '@/types/clientTypes';
+import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
+import { Box, Typography } from '@mui/material'
+import type { AscDesc, SortByKey } from '@/types/clientTypes'
 
 interface ChildProps {
-  objKey: SortByKey;
-  ascDesc: AscDesc;
-  setAscDesc: React.Dispatch<React.SetStateAction<AscDesc>>;
-  sortBy: SortByKey;
-  setSortBy: React.Dispatch<React.SetStateAction<SortByKey>>;
+  objKey: SortByKey
+  ascDesc: AscDesc
+  setAscDesc: React.Dispatch<React.SetStateAction<AscDesc>>
+  sortBy: SortByKey
+  setSortBy: React.Dispatch<React.SetStateAction<SortByKey>>
 }
 
 const TableSortableHead = ({ objKey, ascDesc, setAscDesc, sortBy, setSortBy }: ChildProps) => {
@@ -20,15 +20,15 @@ const TableSortableHead = ({ objKey, ascDesc, setAscDesc, sortBy, setSortBy }: C
       ? 'Artists'
       : objKey === 'releaseDate'
       ? 'Release date'
-      : objKey;
+      : objKey
 
   const handleClick = () => {
     if (objKey !== sortBy) {
-      setAscDesc('');
+      setAscDesc('')
     }
-    setSortBy(objKey);
-    setAscDesc((ascDesc) => (ascDesc === 'asc' ? 'desc' : ascDesc === 'desc' ? '' : 'asc'));
-  };
+    setSortBy(objKey)
+    setAscDesc((ascDesc) => (ascDesc === 'asc' ? 'desc' : ascDesc === 'desc' ? '' : 'asc'))
+  }
 
   return (
     <Box
@@ -54,7 +54,7 @@ const TableSortableHead = ({ objKey, ascDesc, setAscDesc, sortBy, setSortBy }: C
         />
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default TableSortableHead;
+export default TableSortableHead

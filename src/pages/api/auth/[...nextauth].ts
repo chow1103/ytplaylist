@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import type { NextAuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from 'next-auth'
+import type { NextAuthOptions } from 'next-auth'
+import { JWT } from 'next-auth/jwt'
+import GoogleProvider from 'next-auth/providers/google'
 
 /**
  * Takes a token, and returns a new token with updated
@@ -17,19 +17,19 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
         client_secret: process.env.GOOGLE_CLIENT_SECRET as string,
         grant_type: 'refresh_token',
         refresh_token: token.refreshToken as string,
-      }).toString();
+      }).toString()
 
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       method: 'POST',
-    });
+    })
 
-    const refreshedTokens = await response.json();
+    const refreshedTokens = await response.json()
 
     if (!response.ok) {
-      throw refreshedTokens;
+      throw refreshedTokens
     }
 
     return {
@@ -37,14 +37,14 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
       accessToken: refreshedTokens.access_token,
       accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
       refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
-    };
+    }
   } catch (error) {
-    console.log(error);
+    console.log(error)
 
     return {
       ...token,
       error: 'RefreshAccessTokenError',
-    };
+    }
   }
 }
 
@@ -70,29 +70,29 @@ export const authOptions: NextAuthOptions = {
       // save needed info into token as other var get depleted
       // initial sign in
       if (account) {
-        token.accessToken = account.access_token;
-        token.accessTokenExpires = Date.now() + account.expires_in * 1000;
-        token.refreshToken = account.refresh_token;
-        return token;
+        token.accessToken = account.access_token
+        token.accessTokenExpires = Date.now() + account.expires_in * 1000
+        token.refreshToken = account.refresh_token
+        return token
       }
 
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
-        return token;
+        return token
       }
 
       // Access token has expired, try to update it
-      return refreshAccessToken(token);
+      return refreshAccessToken(token)
     },
     async session({ session, token }) {
       // save token info into session to use in the client side
       if (session) {
-        session.accessToken = token.accessToken;
-        session.error = token.error;
+        session.accessToken = token.accessToken
+        session.error = token.error
       }
-      return session;
+      return session
     },
   },
-};
+}
 
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)
